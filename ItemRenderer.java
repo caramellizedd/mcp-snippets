@@ -336,16 +336,6 @@ public class ItemRenderer
         GlStateManager.rotate(-80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(60.0F, 0.0F, 1.0F, 0.0F);
     }
-    public float swingatemp() {
-    	float f = 0;
-
-        if (f < 0.0F)
-        {
-            ++f;
-        }
-
-        return f;
-    }
     /**
      * Renders the active item in the player's hand when in first person mode. Args: partialTickTime
      */
