@@ -288,7 +288,7 @@ boolean displayLegacyAnimations = true;
 
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.isSwingInProgress && this.mc.thePlayer.getCurrentEquippedItem() != null && !this.mc.thePlayer.isEating() && !this.mc.thePlayer.isBlocking()) {
 			GlStateManager.scale(0.865f, 0.85f, 0.85f);
-			GlStateManager.translate(-0.001f, 0.0003f, 0.005f);
+			GlStateManager.translate(-0.01f, 0.01f, -0.03f);
 		}
 
 		GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
