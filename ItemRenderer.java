@@ -275,7 +275,7 @@ public class ItemRenderer
      */
     private void transformFirstPersonItem(float equipProgress, float swingProgress)
     {
-    	boolean displayLegacyAnimations = true;
+boolean displayLegacyAnimations = true;
 		
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.getItemInUse() != null && this.mc.thePlayer.getItemInUse().getItem() != null && Item.getIdFromItem(this.mc.thePlayer.getItemInUse().getItem()) == 261) {
 			GlStateManager.translate(-0.01f, 0.05f, -0.06f);
@@ -287,8 +287,8 @@ public class ItemRenderer
 		}
 
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.isSwingInProgress && this.mc.thePlayer.getCurrentEquippedItem() != null && !this.mc.thePlayer.isEating() && !this.mc.thePlayer.isBlocking()) {
-			GlStateManager.scale(0.85f, 0.85f, 0.85f);
-			GlStateManager.translate(-0.078f, 0.003f, 0.05f);
+			GlStateManager.scale(0.865f, 0.85f, 0.85f);
+			GlStateManager.translate(-0.001f, 0.0003f, 0.005f);
 		}
 
 		GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
@@ -336,50 +336,57 @@ public class ItemRenderer
         GlStateManager.rotate(-80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(60.0F, 0.0F, 1.0F, 0.0F);
     }
+
     /**
      * Renders the active item in the player's hand when in first person mode. Args: partialTickTime
      */
     public void renderItemInFirstPerson(float partialTicks)
     {
-    	float f = 1.0F - (prevEquippedProgress + (equippedProgress - prevEquippedProgress) * partialTicks);
+        float f = 1.0F - (this.prevEquippedProgress + (this.equippedProgress - this.prevEquippedProgress) * partialTicks);
         EntityPlayerSP entityplayersp = this.mc.thePlayer;
         float f1 = entityplayersp.getSwingProgress(partialTicks);
         float f2 = entityplayersp.prevRotationPitch + (entityplayersp.rotationPitch - entityplayersp.prevRotationPitch) * partialTicks;
         float f3 = entityplayersp.prevRotationYaw + (entityplayersp.rotationYaw - entityplayersp.prevRotationYaw) * partialTicks;
-
         this.func_178101_a(f2, f3);
         this.func_178109_a(entityplayersp);
         this.func_178110_a(entityplayersp, partialTicks);
         GlStateManager.enableRescaleNormal();
         GlStateManager.pushMatrix();
 
-        if (this.itemToRender != null) {
-
-            if (this.itemToRender.getItem() instanceof ItemMap) {
+        if (this.itemToRender != null)
+        {
+            if (this.itemToRender.getItem() instanceof ItemMap)
+            {
                 this.renderItemMap(entityplayersp, f2, f, f1);
-            } else if (entityplayersp.getItemInUseCount() > 0) {
+            }
+            else if (entityplayersp.getItemInUseCount() > 0)
+            {
                 EnumAction enumaction = this.itemToRender.getItemUseAction();
 
-                switch (enumaction)
+                switch (ItemRenderer.ItemRenderer$1.field_178094_a[enumaction.ordinal()])
                 {
-                case NONE:
-                    this.transformFirstPersonItem(f, 0.0F);
-                    break;
-                case EAT:
-                case DRINK:
-                    this.func_178104_a(entityplayersp, partialTicks);
-                    this.transformFirstPersonItem(f, f1);
-                    break;
-                case BLOCK:
-                    this.transformFirstPersonItem(0.2F,f1);
-                    this.func_178103_d();
-                    GlStateManager.translate(-0.5F, 0.2F, 0.0F);
-                    break;
-                case BOW:
-                    this.transformFirstPersonItem(f, f1);
-                    this.func_178098_a(partialTicks, entityplayersp);
-        	  }
-            } else {
+                    case 1:
+                        this.transformFirstPersonItem(f, 0.0F);
+                        break;
+
+                    case 2:
+                    case 3:
+                        this.func_178104_a(entityplayersp, partialTicks);
+                        this.transformFirstPersonItem(f, f1);
+                        break;
+
+                    case 4:
+                        this.transformFirstPersonItem(0.2F,f1);
+                        this.func_178103_d();
+                        break;
+
+                    case 5:
+                        this.transformFirstPersonItem(f, f1);
+                        this.func_178098_a(partialTicks, entityplayersp);
+                }
+            }
+            else
+            {
                 this.func_178105_d(f1);
                 this.transformFirstPersonItem(f, f1);
             }
