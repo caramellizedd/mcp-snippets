@@ -275,23 +275,22 @@ public class ItemRenderer
      */
     private void transformFirstPersonItem(float equipProgress, float swingProgress)
     {
-boolean displayLegacyAnimations = true;
+    	boolean displayLegacyAnimations = true;
 		
+
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.getItemInUse() != null && this.mc.thePlayer.getItemInUse().getItem() != null && Item.getIdFromItem(this.mc.thePlayer.getItemInUse().getItem()) == 261) {
-			GlStateManager.translate(-0.01f, 0.05f, -0.06f);
+			
 		}
 
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.getCurrentEquippedItem() != null && this.mc.thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(this.mc.thePlayer.getCurrentEquippedItem().getItem()) == 346) {
-			GlStateManager.translate(0.08f, -0.027f, -0.33f);
-			GlStateManager.scale(0.93f, 1.0f, 1.0f);
+			
 		}
 
 		if (displayLegacyAnimations && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.isSwingInProgress && this.mc.thePlayer.getCurrentEquippedItem() != null && !this.mc.thePlayer.isEating() && !this.mc.thePlayer.isBlocking()) {
-			GlStateManager.scale(0.865f, 0.85f, 0.85f);
-			GlStateManager.translate(-0.01f, 0.01f, -0.03f);
+			
 		}
 
-		GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
+		GlStateManager.translate(0.56F, -0.5F, -0.71999997F);
 		GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
 		GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
 		float f = MathHelper.sin(swingProgress * swingProgress * (float) Math.PI);
